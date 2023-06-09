@@ -6,17 +6,12 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/williamluisan/vrd_mailer/repository"
 	"github.com/williamluisan/vrd_mailer/utils"
 )
 
-type sendData struct {
-	Subject	string	`json:"subject"`
-	Body	string	`json:"body"`
-	MailTo	string	`json:"mailto"`
-}
-
 func Send(c *gin.Context) {
-	var data sendData
+	var data repository.SendData
 
 	// pls add validation
 	// ...

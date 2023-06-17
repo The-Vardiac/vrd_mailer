@@ -6,8 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	config "github.com/williamluisan/vrd_mailer/config"
-	jobs "github.com/williamluisan/vrd_mailer/jobs"
 	"github.com/williamluisan/vrd_mailer/routes"
+	"github.com/williamluisan/vrd_mailer/services"
 )
 
 func init() {
@@ -24,12 +24,12 @@ func init() {
 }
 
 func main() {
-	var jobs jobs.RabbitmqJob
+	var mailServices services.Mail
 
 	defer config.RabbitmqChCons.Close()
 
 	// consume from queue
-	jobs.ConsumeVrdMailerQueue()
+	mailServices.RMQConsumeVrdMailerQueue()
 
 	// initialize gin
 	router := gin.Default()
